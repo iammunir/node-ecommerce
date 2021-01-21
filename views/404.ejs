@@ -1,0 +1,40 @@
+<%- include('includes/head.ejs') %>
+<div class="p-2 grid md:grid-cols-12">
+  <!-- wrapper -->
+
+  <div class="md:col-span-2"><%- include('includes/navigation.ejs') %></div>
+
+  <main class="px-4 md:col-span-10">
+    <%- include('includes/auth.ejs') %>
+
+    <header class="mt-4">
+      <h2
+        class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
+      >
+        The Store
+      </h2>
+      <h3 class="text-lg font-semibold tracking-wider">For your daily needs</h3>
+    </header>
+
+    <div class="text-center p-5">
+      <svg
+        class="w-20 h-20 m-auto"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        ></path>
+      </svg>
+      <h1 class="text-4xl">Page not found!</h1>
+    </div>
+  </main>
+  <!-- end wrapper -->
+</div>
+
+<%- include('includes/end.ejs') %>

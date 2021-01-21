@@ -1,0 +1,143 @@
+<nav class="text-right">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold uppercase p-4 border-b border-gray-100">
+      <a href="/" class="hover:text-gray-700 tracking-widest">The Store</a>
+    </h1>
+    <div class="px-4 cursor-pointer md:hidden" id="burger">
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </div>
+  </div>
+  <ul class="text-sm mt-6 hidden md:block" id="menu">
+    <li class="<%= path === '/' ? 'active-nav-li' : '' %> py-1">
+      <a href="/" class="px-4 flex justify-end border-r-4 border-white">
+        <span>Home</span>
+        <svg
+          class="w-5 ml-2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li class="<%= path === '/cart' ? 'active-nav-li' : '' %> py-1">
+      <a href="/cart" class="px-4 flex justify-end border-r-4 border-white">
+        <span>Cart</span>
+        <svg
+          class="w-5 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li class="<%= path === '/orders' ? 'active-nav-li' : '' %> py-1">
+      <a href="/orders" class="px-4 flex justify-end border-r-4 border-white">
+        <span>Orders</span>
+        <svg
+          class="w-5 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li
+      class="<%= path === '/admin/add-product' ? 'active-nav-li' : '' %> py-1"
+    >
+      <a
+        href="/admin/add-product"
+        class="px-4 flex justify-end border-r-4 border-white"
+      >
+        <span>Add Product</span>
+        <svg
+          class="w-5 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li class="<%= path === '/admin/myproducts' ? 'active-nav-li' : '' %> py-1">
+      <a
+        href="/admin/myproducts"
+        class="px-4 flex justify-end border-r-4 border-white"
+      >
+        <span>My Products</span>
+        <svg
+          class="w-5 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li class="<%= path === '/about' ? 'active-nav-li' : '' %> py-1">
+      <a href="/about" class="px-4 flex justify-end border-r-4 border-white">
+        <span>About</span>
+        <svg
+          class="w-5 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>

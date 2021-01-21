@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs')  %> 
+    <div class="p-2 grid md:grid-cols-12">
+      <!-- wrapper -->
+      <div class="md:col-span-2">
+        <%- include('../includes/navigation.ejs')  %>
+      </div>
+
+      <main class="px-4 md:col-span-10">
+        <%- include('../includes/auth.ejs') %>
+
+        <header class="mt-4">
+          <h2
+            class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
+          >
+            The Store
+          </h2>
+          <h3 class="text-lg font-semibold tracking-wider">
+            For your daily needs
+          </h3>
+        </header>
+
+        <div class="text-center p-5"">
+          <% if (products.length > 0) { %>
+
+            <div class="mt-8 grid lg:grid-cols-3 gap-10">
+                <% for( let product of products ) { %>
+
+                <!-- cards go here -->
+                <div class="card hover:shadow-lg">
+                  <img
+                    src="<%= product.imageUrl %>"
+                    alt=""
+                    class="h-32 sm:h-48 w-full object-cover"
+                  />
+                  <div class="m-4">
+                    <span class="font-bold"><%= product.title %></span>
+                    <span class="block text-gray-500 text-sm">US$ <%= product.price %></span>
+                  </div>
+                  <div class="m-4">
+                    <a href="/product/<%= product.id %>" class="btn hover:text-gray-400">Detail</a>
+                    <form class="inline-block" action="/add-to-cart" method="POST">
+                      <input type="hidden" name="productId" value="<%= product.id %>" />
+                      <button type="submit" class="btn hover:text-gray-400">Add to Cart</button>
+                    </form>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+
+          <% } else { %>
+            <h1 class="text-4xl">No Products!</h1>
+          <% } %>
+        </div>
+      </main>
+      <!-- end wrapper -->
+    </div>
+    <%- include('../includes/end.ejs') %>
