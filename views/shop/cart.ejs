@@ -8,19 +8,89 @@
       <main class="px-4 md:col-span-10">
         <%- include('../includes/auth.ejs') %>
 
-        <header class="mt-4">
+        <header class="mt-4 text-center">
           <h2
             class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
           >
-            The Store
+            Your Cart
           </h2>
-          <h3 class="text-lg font-semibold tracking-wider">
-            For your daily needs
-          </h3>
         </header>
 
         <div class="text-center p-5"">
-          
+          <% if (products.length > 0) { %>
+            
+            <div class="flex flex-col">
+              <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                  <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                      <thead class="bg-gray-50">
+                        <tr>
+                          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Title
+                          </th>
+                          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Quantity
+                          </th>
+                          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Price
+                          </th>
+                          <th scope="col" class="relative px-6 py-3">
+                            <span class="sr-only">Edit</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody class="bg-white divide-y divide-gray-200">
+                        
+                        <% for( let product of products ) { %>
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10">
+                                  <img class="h-10 w-10 rounded-full" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                                </div>
+                                <div class="ml-4 text-left">
+                                  <div class="text-sm font-medium text-gray-900">
+                                    <%= product.title %> 
+                                  </div>
+                                  <div class="text-sm text-gray-500">
+                                    <%= product.description %> 
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <p class="text-left text-sm text-gray-500"><%= product.CartItem.qty %></p>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              <p class="text-left text-sm text-gray-500">US$ <%= product.CartItem.price %></p>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                              <form class="inline-block" action="delete-from-cart" method="post">
+                                <input type="hidden" name="productId" value="<%= product.id %>">
+                                <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
+                              </form>
+                            </td>
+                          </tr>
+                        <% } %> 
+
+                        <!-- More items... -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form class="mt-5 my-auto" action="/create-order" method="POST">
+              <button class="btn text-primary ml-2 border-primary md:border-2 hover:bg-green-200 transition ease-out duration-500" type="submit">
+                Checkout
+              </button>
+            </form>
+
+          <% } else { %>
+            <h1 class="text-4xl">Nothing here, let's add <a href="/">some</a>!</h1>  
+          <% } %>
         </div>
       </main>
       <!-- end wrapper -->

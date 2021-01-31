@@ -2,11 +2,11 @@ import { Sequelize, Model, DataTypes } from 'sequelize';
 
 const sequelize = require('./database');
 
-class Cart extends Model {
+class Order extends Model {
     public id!: string;
 }
 
-const cart = Cart.init(
+const order = Order.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -16,9 +16,9 @@ const cart = Cart.init(
         },
     },
     {
-        tableName: "carts",
+        tableName: "orders",
         sequelize,
     }
 );
 
-module.exports = cart;
+module.exports = order;

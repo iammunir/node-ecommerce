@@ -20,7 +20,7 @@ export const postAddProduct: RequestHandler = (req: Request, res: Response, next
         description: req.body.description
     }
 
-    Product.create({
+    req.currentUser.createProduct({
         id: newProduct.id,
         title: newProduct.title, 
         price: newProduct.price, 
@@ -28,15 +28,15 @@ export const postAddProduct: RequestHandler = (req: Request, res: Response, next
         description: newProduct.description
     }).then((result: any) => {
         console.log('product has been created');
+        res.redirect('/');
     }).catch((err: any) => {
         console.log(err);
     });
 
-    res.redirect('/');
 };  
 
 export const getProducts: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
-    Product.findAll()
+    req.currentUser.getProducts()
         .then((products: any) => {
             res.render('admin/myproducts', {
                 pageTitle: 'The Store - My Products',
@@ -51,8 +51,9 @@ export const getProducts: RequestHandler = (req: Request, res: Response, next: N
 
 export const getEditProduct: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.productId;
-    Product.findOne({where: {id: id}})
-        .then((product: any) => {
+    req.currentUser.getProducts({where: {id: id}})
+        .then((products: any) => {
+            const product = products[0];
             if (!product) {
                 return res.status(404);
             }
@@ -70,7 +71,6 @@ export const getEditProduct: RequestHandler = (req: Request, res: Response, next
 };
 
 export const postEditProduct: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body);
     const updatedProduct = {
         id: req.body.id,
         title: req.body.title, 
