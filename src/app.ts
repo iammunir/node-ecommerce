@@ -1,8 +1,16 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 import bodyParser from 'body-parser';
+import session from 'express-session';
+import connect from 'connect-session-sequelize';
 import path from 'path';
 
-const sequelize = require('./models/database');
+const sequelizeDb = require('./models/database');
+const SequelizeStore = connect(session.Store);
+const storeSession = new SequelizeStore({
+    db: sequelizeDb,
+    tableName: 'session'
+});
+
 const Product = require('./models/product');
 const User = require('./models/user');
 const Cart = require('./models/cart');
@@ -12,6 +20,7 @@ const OrderItem = require('./models/order-item');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 const errorController = require('./controllers/errorController');
 
 const PORT = process.env.PORT || 3000;
@@ -24,9 +33,18 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: false,
+    store: storeSession
+}));
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-    User.findOne({id: '1'})
+    if (!req.session.user) {
+        return next();
+    }
+    User.findOne({id: req.session.user.id})
         .then((user: any) => {
             req.currentUser = user;
             next();
@@ -38,6 +56,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 app.use(errorController.get404);
 
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
@@ -56,7 +75,7 @@ Order.belongsToMany(Product, {through: OrderItem});
 Product.belongsToMany(Order, {through: OrderItem});
 
 let fetchedUser: any;
-sequelize
+sequelizeDb
     // .sync({force: true})
     .sync()
     .then((result: any) => {

@@ -6,13 +6,12 @@
   <main class="px-4 md:col-span-10">
     <%- include('../includes/auth.ejs') %>
 
-    <header class="mt-4">
+    <header class="mt-4 text-center">
       <h2
         class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
       >
-        The Store
+        Add Product
       </h2>
-      <h3 class="text-lg font-semibold tracking-wider">For your daily needs</h3>
     </header>
 
     <div>
@@ -20,6 +19,7 @@
       <form
         action="/admin/<%= edit ? 'edit-product' : 'add-product' %>"
         method="POST"
+        class="w-2/4 mx-auto"
       >
         <div class="shadow overflow-hidden sm:rounded-md">
           <div class="px-4 py-5 bg-white sm:p-6">

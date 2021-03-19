@@ -9,7 +9,8 @@ export const getProducts: RequestHandler = (req: Request, res: Response, next: N
             res.render('shop/shop', {
                 pageTitle: 'The Store - Home',
                 products: products,
-                path: '/'
+                path: '/',
+                isAuthenticated: req.session.isLoggedIn,
             });
         })
         .catch((err: any) => {
@@ -25,7 +26,8 @@ export const getProduct: RequestHandler = (req: Request, res: Response, next: Ne
             res.render('shop/product-detail', {
                 pageTitle: `The Store - ${product.title}`,
                 product: product,
-                path: '/'
+                path: '/',
+                isAuthenticated: req.session.isLoggedIn,
             })
         })
         .catch((err: any) => {
@@ -89,11 +91,11 @@ export const getCart: RequestHandler = (req: Request, res: Response, next: NextF
         .then((cart: any) => {
             return cart.getProducts()
                 .then((products: any) => {
-                    console.log(products.CartItem);
                     res.render('shop/cart', {
                         pageTitle: 'The Store - Cart',
                         path: '/cart',
-                        products: products
+                        products: products,
+                        isAuthenticated: req.session.isLoggedIn,
                     });
                 })
                 .catch((err: any) => console.log(err));
@@ -132,14 +134,14 @@ export const postOrder: RequestHandler = (req: Request, res: Response, next: Nex
 export const getOrders: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     req.currentUser.getOrders({include: Product})
         .then((orders: any) => {
-            console.log(orders);
             if (orders.length > 0) {
 
             }
             res.render('shop/orders', {
                 pageTitle: 'The Store - Orders',
                 path: '/orders',
-                orders: orders
+                orders: orders,
+                isAuthenticated: req.session.isLoggedIn,
             });
         })
         .catch((err: any) => console.log(err));
@@ -148,13 +150,15 @@ export const getOrders: RequestHandler = (req: Request, res: Response, next: Nex
 export const getCheckout: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     res.render('shop/checkout', {
         pageTitle: 'The Store - Checkout',
-        path: '/cart'
+        path: '/cart',
+        isAuthenticated: req.session.isLoggedIn,
     });
 };
 
 export const getAbout: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     res.render('shop/about', {
         pageTitle: 'The Store - About',
-        path: '/about'
+        path: '/about',
+        isAuthenticated: req.session.isLoggedIn,
     });
 };

@@ -1,0 +1,73 @@
+<%- include('../includes/head.ejs') %>
+<div class="p-2 grid md:grid-cols-12">
+  <!-- wrapper -->
+  <div class="md:col-span-2"><%- include('../includes/navigation.ejs') %></div>
+
+  <main class="px-4 md:col-span-10">
+    <%- include('../includes/auth.ejs') %>
+
+    <header class="mt-4 text-center">
+        <h2
+          class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
+        >
+          Login
+        </h2>
+      </header>
+
+    <div>
+      <!-- form go here -->
+      <form
+        action="/login"
+        method="POST"
+        class="w-2/4 mx-auto"
+      >
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6">
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700"
+                  >E-mail</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  autocomplete="off"
+                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                />
+              </div>
+
+              <div class="col-span-6">
+                <label
+                  for="password"
+                  class="block text-sm font-medium text-gray-700"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  autocomplete="off"
+                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                />
+              </div>
+
+            </div>
+          </div>
+          <div class="px-4 py-3 bg-gray-50 text-center sm:px-6">
+            <button
+              type="submit"
+              class="btn text-primary border-primary md:border-2 hover:bg-green-500 transition ease-out duration-500"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+  <!-- end wrapper -->
+</div>
+<%- include('../includes/end.ejs') %>

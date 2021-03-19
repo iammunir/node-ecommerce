@@ -36,6 +36,7 @@
         </svg>
       </a>
     </li>
+    <% if (isAuthenticated) { %>
     <li class="<%= path === '/cart' ? 'active-nav-li' : '' %> py-1">
       <a href="/cart" class="px-4 flex justify-end border-r-4 border-white">
         <span>Cart</span>
@@ -120,6 +121,8 @@
         </svg>
       </a>
     </li>
+    <% } %>
+
     <li class="<%= path === '/about' ? 'active-nav-li' : '' %> py-1">
       <a href="/about" class="px-4 flex justify-end border-r-4 border-white">
         <span>About</span>

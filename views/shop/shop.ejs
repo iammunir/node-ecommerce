@@ -37,7 +37,9 @@
                     <a href="/product/<%= product.id %>" class="btn hover:text-gray-400">Detail</a>
                     <form class="inline-block" action="/add-to-cart" method="POST">
                       <input type="hidden" name="productId" value="<%= product.id %>" />
-                      <button type="submit" class="btn hover:text-gray-400">Add to Cart</button>
+                      <% if (isAuthenticated) { %>
+                        <button type="submit" class="btn hover:text-gray-400">Add to Cart</button>
+                      <% } %>
                     </form>
                   </div>
                 </div>
