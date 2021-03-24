@@ -10,7 +10,7 @@ export const getProducts: RequestHandler = (req: Request, res: Response, next: N
                 pageTitle: 'The Store - Home',
                 products: products,
                 path: '/',
-                isAuthenticated: req.session.isLoggedIn,
+                
             });
         })
         .catch((err: any) => {
@@ -27,7 +27,7 @@ export const getProduct: RequestHandler = (req: Request, res: Response, next: Ne
                 pageTitle: `The Store - ${product.title}`,
                 product: product,
                 path: '/',
-                isAuthenticated: req.session.isLoggedIn,
+                
             })
         })
         .catch((err: any) => {
@@ -95,7 +95,7 @@ export const getCart: RequestHandler = (req: Request, res: Response, next: NextF
                         pageTitle: 'The Store - Cart',
                         path: '/cart',
                         products: products,
-                        isAuthenticated: req.session.isLoggedIn,
+                        
                     });
                 })
                 .catch((err: any) => console.log(err));
@@ -141,7 +141,7 @@ export const getOrders: RequestHandler = (req: Request, res: Response, next: Nex
                 pageTitle: 'The Store - Orders',
                 path: '/orders',
                 orders: orders,
-                isAuthenticated: req.session.isLoggedIn,
+                
             });
         })
         .catch((err: any) => console.log(err));
@@ -151,7 +151,7 @@ export const getCheckout: RequestHandler = (req: Request, res: Response, next: N
     res.render('shop/checkout', {
         pageTitle: 'The Store - Checkout',
         path: '/cart',
-        isAuthenticated: req.session.isLoggedIn,
+        
     });
 };
 
@@ -159,6 +159,6 @@ export const getAbout: RequestHandler = (req: Request, res: Response, next: Next
     res.render('shop/about', {
         pageTitle: 'The Store - About',
         path: '/about',
-        isAuthenticated: req.session.isLoggedIn,
+        
     });
 };

@@ -4,8 +4,9 @@ const sequelize = require('./database');
 
 class User extends Model {
     id!: string;
-    name!: string;
+    username!: string;
     email!: string;
+    password!: string;
 }
 
 const user = User.init(
@@ -15,7 +16,7 @@ const user = User.init(
             allowNull: false,
             primaryKey: true,
         },
-        name: {
+        username: {
             type: DataTypes.STRING(255),
             allowNull: false,
         },
@@ -23,7 +24,11 @@ const user = User.init(
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-        }
+        },
+        password: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
+        },
     },
     {
         tableName: "users",

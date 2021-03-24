@@ -68,6 +68,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                               <form class="inline-block" action="delete-from-cart" method="post">
                                 <input type="hidden" name="productId" value="<%= product.id %>">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                 <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
                               </form>
                             </td>
@@ -83,6 +84,7 @@
             </div>
 
             <form class="mt-5 my-auto" action="/create-order" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <button class="btn text-primary ml-2 border-primary md:border-2 hover:bg-green-200 transition ease-out duration-500" type="submit">
                 Checkout
               </button>

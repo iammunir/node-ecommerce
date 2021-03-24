@@ -6,12 +6,13 @@
     >Log in</a
   >
   <a
-  href="#"
+  href="/signup"
   class="btn text-primary ml-2 border-primary md:border-2 hover:bg-green-200 transition ease-out duration-500"
   >Sign up</a
   >
   <% } else { %>
   <form action="/logout" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <button 
       type="submit"
       class="btn text-primary ml-2 border-primary md:border-2 hover:bg-green-200 transition ease-out duration-500"
