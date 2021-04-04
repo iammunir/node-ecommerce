@@ -7,6 +7,8 @@ class User extends Model {
     username!: string;
     email!: string;
     password!: string;
+    resetToken!: string;
+    resetTokenExp!: Date;
 }
 
 const user = User.init(
@@ -29,6 +31,14 @@ const user = User.init(
             type: DataTypes.STRING(255),
             allowNull: false,
         },
+        resetToken: {
+            type: DataTypes.STRING(255),
+            allowNull: true
+        },
+        resetTokenExp: {
+            type: DataTypes.DATE,
+            allowNull: true
+        }
     },
     {
         tableName: "users",

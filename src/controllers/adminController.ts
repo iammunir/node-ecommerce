@@ -8,7 +8,6 @@ export const getAddProduct: RequestHandler = (req: Request, res: Response, next:
         path: '/admin/add-product',
         edit: false,
         product: null,
-        
     });
 };
 
@@ -81,7 +80,11 @@ export const postEditProduct: RequestHandler = (req: Request, res: Response, nex
         imageUrl: req.body.image_url,
         description: req.body.description
     }
-    Product.update(updatedProduct, {where: {id: updatedProduct.id}})
+    Product.update(updatedProduct, 
+        {where: {
+            id: updatedProduct.id,
+            UserId: req.currentUser.id
+        }})
         .then((result: any) => {
             res.redirect('/admin/myproducts');
         })
@@ -92,7 +95,11 @@ export const postEditProduct: RequestHandler = (req: Request, res: Response, nex
 
 export const postDeleteProduct: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     const id = req.body.productId;
-    Product.destroy({where: {id: id}})
+    Product.destroy({
+        where: {
+            id: id,
+            UserId: req.currentUser.id
+        }})
         .then((result: any) => {
             res.redirect('/admin/myproducts');
         })

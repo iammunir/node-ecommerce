@@ -10,7 +10,7 @@
         <h2
           class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
         >
-          Login
+          Reset Password
         </h2>
       </header>
 
@@ -26,7 +26,7 @@
       <% } %>
       <!-- form go here -->
       <form
-        action="/login"
+        action="/reset-password"
         method="POST"
         class="w-2/4 mx-auto"
       >
@@ -43,23 +43,6 @@
                   type="email"
                   name="email"
                   id="email"
-                  value="<%= prevInputs ? prevInputs.email : '' %>"
-                  autocomplete="off"
-                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
-                />
-              </div>
-
-              <div class="col-span-6">
-                <label
-                  for="password"
-                  class="block text-sm font-medium text-gray-700"
-                  >Password</label
-                >
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value="<%= prevInputs ? prevInputs.password : '' %>"
                   autocomplete="off"
                   class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
                 />
@@ -73,11 +56,8 @@
               type="submit"
               class="btn text-primary border-primary md:border-2 hover:bg-green-500 transition ease-out duration-500"
             >
-              Login
+              Reset Password
             </button>
-          </div>
-          <div class="px-4 py-3 bg-gray-50 text-center sm:px-6">
-            <a href="/reset">Reset Password</a>
           </div>
         </div>
       </form>

@@ -3,3 +3,4 @@ node_modules
 build
 public/css/styles.css
 dummydata
+.env

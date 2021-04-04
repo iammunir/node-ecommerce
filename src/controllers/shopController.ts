@@ -10,7 +10,6 @@ export const getProducts: RequestHandler = (req: Request, res: Response, next: N
                 pageTitle: 'The Store - Home',
                 products: products,
                 path: '/',
-                
             });
         })
         .catch((err: any) => {

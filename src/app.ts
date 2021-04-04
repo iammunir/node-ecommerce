@@ -52,14 +52,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     if (!req.session.user) {
         return next();
     }
-    User.findOne({id: req.session.user.id})
-        .then((user: any) => {
-            req.currentUser = user;
-            next();
-        })
-        .catch((err: any) => {
-            console.log(err);
-        });
+    User.findOne({
+        where: {
+            id: req.session.user.id
+        }
+    })
+    .then((user: any) => {
+        req.currentUser = user;
+        next();
+    })
+    .catch((err: any) => {
+        console.log(err);
+    });
 });
 
 app.use(csrfMiddleware);
