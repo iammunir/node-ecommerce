@@ -37,6 +37,7 @@ export const getSignup: RequestHandler = (req: Request, res: Response, next: Nex
         path: '/signup',
         message: errorMessage,
         prevInputs: null,
+        validationErrors: [],
     });
 };
 
@@ -48,7 +49,8 @@ export const postSignup: RequestHandler = (req: Request, res: Response, next: Ne
             pageTitle: 'Signup',
             path: '/signup',
             message: errors.array()[0].msg,
-            prevInputs: {username, email, password, confirmPassword}
+            prevInputs: {username, email, password, confirmPassword},
+            validationErrors: errors.array(),
         });
     }
 
@@ -73,7 +75,9 @@ export const postSignup: RequestHandler = (req: Request, res: Response, next: Ne
                 })
         })
         .catch((err:any) => {
-            console.log(err);
+            const error = new Error(err);
+            res.status(500);
+            next(error);
         });
 };
 
@@ -90,6 +94,7 @@ export const getLogin: RequestHandler = (req: Request, res: Response, next: Next
         path: '/login',
         message: errorMessage,
         prevInputs: null,
+        validationError: false,
     });
 };
 
@@ -102,6 +107,7 @@ export const postLogin: RequestHandler = (req: Request, res: Response, next: Nex
             path: '/login',
             message: errors.array()[0].msg,
             prevInputs: {email, password},
+            validationError: true,
         });
     }
 
@@ -121,8 +127,10 @@ export const postLogin: RequestHandler = (req: Request, res: Response, next: Nex
                     res.redirect('/login');
                 })
         })
-        .catch((err: any) => {
-            console.log(err);
+        .catch((err:any) => {
+            const error = new Error(err);
+            res.status(500);
+            next(error);
         });
 };
 
@@ -179,8 +187,10 @@ export const postReset: RequestHandler = (req: Request, res: Response, next: Nex
                     });
             });
         })
-        .catch((err: any) => {
-            console.log(err);
+        .catch((err:any) => {
+            const error = new Error(err);
+            res.status(500);
+            next(error);
         });
 };
 
@@ -211,8 +221,10 @@ export const getNewPassword: RequestHandler = (req: Request, res: Response, next
             passwordToken: token
         });
     })
-    .catch((err: any) => {
-        console.log(err);
+    .catch((err:any) => {
+        const error = new Error(err);
+        res.status(500);
+        next(error);
     });
 };
 
@@ -246,7 +258,9 @@ export const postNewPassword: RequestHandler = (req: Request, res: Response, nex
     .then(() => {
         res.redirect('/login');
     })
-    .catch((err: any) => {
-        console.log(err);
+    .catch((err:any) => {
+        const error = new Error(err);
+        res.status(500);
+        next(error);
     });
 };

@@ -11,7 +11,11 @@ router.get('/signup', authController.getSignup);
 
 // POST /signup
 router.post(
-    '/signup', 
+    '/signup',
+    body('username', 'Please input valid username, numbers or alphabets at least 3 characters')
+        .trim()
+        .isLength({min: 3})
+        .isAlphanumeric(), 
     check('email')
         .isEmail().withMessage('Please enter valid email')
         .custom((value: string, {req}) => {
@@ -21,14 +25,20 @@ router.post(
                         return Promise.reject('Email is not available')
                     }
                 })
+        })
+        .normalizeEmail(),
+    body('password', 'Please input only numbers or alphabets and at least 6 characters')
+        .trim()
+        .isLength({min: 6})
+        .isAlphanumeric(),
+    body('confirmPassword')
+        .trim()
+        .custom((value: string, {req}) => {
+            if (value !== req.body.password) {
+                throw new Error('Password does not match!');
+            }
+            return true;
         }),
-    body('password', 'Please input only numbers or alphabets and at least 6 characters').isLength({min: 6}).isAlphanumeric(),
-    body('confirmPassword').custom((value: string, {req}) => {
-        if (value !== req.body.password) {
-            throw new Error('Password does not match!');
-        }
-        return true;
-    }),
     authController.postSignup
     );
 
@@ -47,7 +57,8 @@ router.post(
                         return Promise.reject('Invalid email or password')
                     }
                 })
-        }),
+        })
+        .normalizeEmail(),
     authController.postLogin
     );
 

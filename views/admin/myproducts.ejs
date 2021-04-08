@@ -25,8 +25,8 @@
                 <!-- cards go here -->
                 <div class="card hover:shadow-lg">
                   <img
-                    src="<%= product.imageUrl %>"
-                    alt=""
+                    src="/<%= product.imageUrl %>"
+                    alt="image of <%= product.title %>"
                     class="h-32 sm:h-48 w-full object-cover"
                   />
                   <div class="m-4">
@@ -44,7 +44,8 @@
                 </div>
               <% } %>
             </div>
-
+            <%- include('../includes/pagination.ejs', {currentPage, hasNextPage, nextPage, hasPreviousPage, previousPage, lastPage}) %>
+            <%= currentPage, hasNextPage, nextPage, hasPreviousPage, previousPage, lastPage %> 
           <% } else { %>
             <h1 class="text-4xl">You don't have any Products!</h1>
           <% } %>

@@ -45,7 +45,7 @@
                   id="email"
                   value="<%= prevInputs ? prevInputs.email : '' %>"
                   autocomplete="off"
-                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                  class="<%= validationError ? 'border-red-700' : '' %> mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
                 />
               </div>
 
@@ -61,7 +61,7 @@
                   id="password"
                   value="<%= prevInputs ? prevInputs.password : '' %>"
                   autocomplete="off"
-                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                  class="<%= validationError ? 'border-red-700' : '' %> mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
                 />
               </div>
 

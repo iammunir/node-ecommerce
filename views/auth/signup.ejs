@@ -7,12 +7,12 @@
     <%- include('../includes/auth.ejs') %>
 
     <header class="mt-4 text-center">
-        <h2
-          class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
-        >
-          Sign Up
-        </h2>
-      </header>
+      <h2
+        class="text-gray-700 text-2xl font-semibold leading-none tracking-wider"
+      >
+        Sign Up
+      </h2>
+    </header>
 
     <div>
       <% if (message) { %>
@@ -46,7 +46,7 @@
                   id="username"
                   value="<%= prevInputs ? prevInputs.username : '' %>"
                   autocomplete="off"
-                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                  class="<%= validationErrors.find(e => e.param === 'username') ? 'border-red-700' : '' %> mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
                 />
               </div>
 
@@ -62,7 +62,7 @@
                   id="email"
                   value="<%= prevInputs ? prevInputs.email : '' %>"
                   autocomplete="off"
-                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                  class="<%= validationErrors.find(e => e.param === 'email') ? 'border-red-700' : '' %> mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
                 />
               </div>
 
@@ -78,7 +78,7 @@
                   id="password"
                   value="<%= prevInputs ? prevInputs.password : '' %>"
                   autocomplete="off"
-                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                  class="<%= validationErrors.find(e => e.param === 'password') ? 'border-red-700' : '' %> mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
                 />
               </div>
 
@@ -94,7 +94,7 @@
                   id="confirmPassword"
                   value="<%= prevInputs ? prevInputs.confirmPassword : '' %>"
                   autocomplete="off"
-                  class="mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
+                  class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'border-red-700' : '' %> mt-1 focus:ring-indigo-300 focus:border-indigo-100 block w-full shadow-sm sm:text-sm border border-gray-300 p-1 rounded-md"
                 />
               </div>
 

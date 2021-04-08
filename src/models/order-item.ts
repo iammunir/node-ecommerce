@@ -16,6 +16,10 @@ const orderItem = OrderItem.init(
             allowNull: false,
             primaryKey: true,
         },
+        title: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
+        },
         qty: {
             type: DataTypes.INTEGER,
             allowNull: false, 
